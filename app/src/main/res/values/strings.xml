@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">ChatMe</string>
+    <string name="already_have_account">I already have an account.<u>Login</u>  </string>
+    <string name="newToChatMe">I am new to chat me. <u>Register</u>  </string>
+    <string name="register">Register</string>
+    <string name="verification_sent">A verification has been sent to </string>
+    <string name="verification_unreceived">I didn\'t received any code yet.<u>Resend</u></string>
+</resources>
