@@ -16,6 +16,9 @@
         - run:
             name: Fix gradlew permisssions
             command: chmod a+x gradlew
+        - run:
+            name: Download Dependencies
+            command: ./gradlew androidDependenciesk
         # Save the downloaded Gradle info to a cache to speed-up future builds
         - save_cache:
             paths:
