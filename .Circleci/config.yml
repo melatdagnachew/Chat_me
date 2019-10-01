@@ -14,7 +14,7 @@ jobs:
       # Instruct Gradle to download all the dependencies, such as libraries
       - run:
           name: Fix gradlew permissions
-          command: chmod a+c gradlew
+          command: chmod a+x gradlew
       # Save the downloaded Gradle info to a cache to speed-up future builds
       - save_cache:
           paths:

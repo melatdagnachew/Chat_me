@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "766181824252",
+    "firebase_url": "https://chatme-c90a9.firebaseio.com",
+    "project_id": "chatme-c90a9",
+    "storage_bucket": "chatme-c90a9.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:766181824252:android:2f8d4734837d712ad26979",
+        "android_client_info": {
+          "package_name": "com.gebeya.chatme"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "766181824252-vvrsd91u2hbfr0scicrus8e4pj2o38r8.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.gebeya.chatme",
+            "certificate_hash": "60c52e7905e7561559d670aa8fc69f078802ef6c"
+          }
+        },
+        {
+          "client_id": "766181824252-sfn4arepumoh35ks2bqn07vouqli0b63.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyACSlRtP5J6f_b-xi-jHe1hINdgTfWfjyw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "766181824252-sfn4arepumoh35ks2bqn07vouqli0b63.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
