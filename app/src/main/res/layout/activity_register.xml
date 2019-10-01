@@ -11,7 +11,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="600dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="90dp"
         android:orientation="vertical">
 
@@ -71,12 +71,13 @@
             android:layout_marginTop="35dp"
             android:textColor="#FF50C97F"
             android:background="@drawable/register_button"
+            android:onClick="register_button"
             />
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="60dp"
-        android:gravity="center"
+        android:layout_gravity="center"
         >
 
         <TextView
@@ -89,17 +90,18 @@
             android:textColor="#FFF"
 
             />
-
         <TextView
-            android:id="@+id/textView4"
+            android:id="@+id/textView3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20sp"
-            android:onClick="login_text"
             android:gravity="center"
-            android:text="Login"
-            android:textAllCaps="false"
-            android:textColor="#FFF" />
+            android:text="@string/login"
+            android:textColor="#FFF"
+            android:onClick="login_text"
+            />
+
+
     </LinearLayout>
     </LinearLayout>
 
