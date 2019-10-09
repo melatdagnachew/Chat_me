@@ -5,14 +5,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".RegisterActivity"
-    android:background="@drawable/gradient"
+    android:background="@drawable/register_gradient"
     android:orientation="horizontal">
 
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="90dp"
+        android:layout_marginTop="80dp"
         android:orientation="vertical">
 
 
@@ -50,7 +50,7 @@
             android:textColorHint="#e9edf6" />
 
         <EditText
-            android:id="@+id/editText"
+            android:id="@+id/phoneNumberInput"
             android:layout_width="350dp"
             android:layout_height="55dp"
             android:ems="10"
@@ -69,7 +69,7 @@
             android:layout_marginLeft="26dp"
             android:text="Register"
             android:layout_marginTop="35dp"
-            android:textColor="#FF50C97F"
+            android:textColor="#10BDDE"
             android:background="@drawable/register_button"
             android:onClick="register_button"
             />
@@ -100,8 +100,6 @@
             android:textColor="#FFF"
             android:onClick="login_text"
             />
-
-
     </LinearLayout>
     </LinearLayout>
 

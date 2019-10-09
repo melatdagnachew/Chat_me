@@ -1,115 +1,75 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/gradient">
-
-
-    <TextView
-        android:id="@+id/textView5"
-        android:layout_width="match_parent"
-        android:layout_height="95dp"
-        android:layout_marginTop="152dp"
-        android:fontFamily="sans-serif-medium"
-        android:gravity="center"
-        android:text="@string/verification_sent"
-        android:textAllCaps="false"
-        android:textColor="@color/colorWhite"
-        android:textSize="20sp"
-        android:typeface="monospace"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    android:background="@drawable/login_gradient">
 
     <TextView
         android:id="@+id/textView4"
         android:layout_width="match_parent"
         android:layout_height="60dp"
+        android:layout_marginTop="90dp"
         android:fontFamily="sans-serif-medium"
         android:gravity="center"
         android:text="Verification Code"
         android:textAllCaps="false"
         android:textColor="@color/colorWhite"
-        android:textSize="25sp"
+        android:textSize="35sp"
         android:textStyle="bold"
         android:typeface="monospace"
-        app:layout_constraintBottom_toTopOf="@+id/textView5"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.865" />
-    <LinearLayout
-        android:id="@+id/linearLayout"
+        />
+
+    <TextView
+        android:id="@+id/display_numb"
         android:layout_width="match_parent"
-        android:layout_height="100dp"
+        android:layout_height="95dp"
+        android:fontFamily="sans-serif-medium"
         android:gravity="center"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView5">
+        android:text="@string/verification_sent"
+        android:textAllCaps="false"
+        android:textColor="@color/colorWhite"
+        android:textSize="25sp"
+        android:typeface="monospace"
+        />
 
-        <EditText
-            android:id="@+id/firstCodeChar"
-            android:layout_width="75dp"
-            android:layout_height="50dp"
-            android:layout_marginStart="14dp"
-            android:layout_marginTop="8dp"
-            android:background="@drawable/register_button"
-            android:ems="1"
-            android:inputType="numberPassword"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView5" />
 
-        <EditText
-            android:id="@+id/secondCodeChar"
-            android:layout_width="75dp"
-            android:layout_height="50dp"
-            android:layout_marginStart="14dp"
-            android:layout_marginTop="8dp"
-            android:background="@drawable/register_button"
-            android:ems="10"
-            android:inputType="numberPassword"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView5" />
 
-        <EditText
-            android:id="@+id/thirdCodeChar"
-            android:layout_width="75dp"
-            android:layout_height="50dp"
-            android:layout_marginStart="14dp"
-            android:layout_marginTop="8dp"
-            android:background="@drawable/register_button"
-            android:ems="10"
-            android:inputType="numberPassword"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView5" />
+    <com.chaos.view.PinView
+        android:id="@+id/firstPinView"
+        style="@style/PinWidget.PinView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:cursorVisible="true"
+        android:layout_marginTop="20sp"
+        android:inputType="text"
+        android:itemBackground="@color/colorWhite"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:cursorWidth="2dp"
+        app:hideLineWhenFilled="true"
+        app:itemCount="6"
+        app:itemHeight="48dp"
+        app:itemRadius="4dp"
+        app:itemSpacing="10dp"
+        app:itemWidth="48dp"
+        app:lineWidth="2dp"
+        app:viewType="rectangle"
+        android:layout_gravity="center"/>
 
-        <EditText
-            android:id="@+id/fourthCodeChar"
-            android:layout_width="75dp"
-            android:layout_height="50dp"
-            android:layout_marginStart="14dp"
-            android:layout_marginTop="8dp"
-            android:background="@drawable/register_button"
-            android:ems="10"
-            android:inputType="numberPassword"
-            app:layout_constraintStart_toEndOf="@+id/editText2"
-            app:layout_constraintTop_toBottomOf="@+id/textView5" />
-    </LinearLayout>
     <TextView
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="37dp"
-        android:gravity="center"
+        android:layout_marginTop="50dp"
+        android:layout_gravity="center"
         android:text="@string/verification_unreceived"
         android:textColor="#FFF"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
+         />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+
+</LinearLayout>
