@@ -51,6 +51,7 @@ public class VerificationActivity extends AppCompatActivity {
         editTextCode = (String) pinView.getText().toString();
         codeInput = editTextCode;
 
+
         Intent intent = getIntent();
         String phone = intent.getStringExtra("phone");
         sendVerificationCode(phone);
@@ -85,21 +86,20 @@ public class VerificationActivity extends AppCompatActivity {
             return;
         }
 
-        PhoneAuthProvider.getInstance().verifyPhoneNumber(
+        PhoneAuthProvider auth = PhoneAuthProvider.getInstance();
+        auth.verifyPhoneNumber(
                 phone,        // Phone number to verify
                 60,                 // Timeout duration
                 TimeUnit.SECONDS,   // Unit of timeout
                 this,               // Activity (for callback binding)
                 mCallbacks
         );        // OnVerificationStateChangedCallbacks
-
     }
 
     PhoneAuthProvider.OnVerificationStateChangedCallbacks mCallbacks = new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
         @Override
         public void onVerificationCompleted(PhoneAuthCredential phoneAuthCredential) {
             String code = phoneAuthCredential.getSmsCode();
-
 
             //sometime the code is not detected automatically
             //in this case the code will be null
@@ -167,7 +167,7 @@ public class VerificationActivity extends AppCompatActivity {
                 .addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
-
+                        Toast.makeText(getApplicationContext(), "Verification failed", Toast.LENGTH_LONG).show();
                     }
                 });
     }

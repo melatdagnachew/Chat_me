@@ -7,7 +7,6 @@
     tools:context=".HomeActivity"
     android:orientation="vertical">
 
-
     <TextView
         android:id="@+id/textView6"
         android:layout_width="match_parent"
@@ -18,28 +17,50 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <LinearLayout
+        android:id="@+id/bot_greeting"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:layout_editor_absoluteX="23dp"
+        tools:layout_editor_absoluteY="101dp"
+        android:layout_marginTop="90dp"
+        />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@+id/bottom_textView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView6"
+        app:layout_constraintVertical_bias="0.249" />
+
     <TextView
-        android:id="@+id/textView7"
+        android:id="@+id/bottom_textView"
         android:layout_width="match_parent"
         android:layout_height="75dp"
-        android:layout_marginBottom="0dp"
         android:background="@drawable/login_gradient"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent" />
 
     <ImageView
-        android:id="@+id/imageView2"
+        android:id="@+id/keyboard_icon"
         android:layout_width="44dp"
         android:layout_height="44dp"
         android:layout_marginEnd="28dp"
         android:layout_marginBottom="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/textView7"
-        app:srcCompat="@drawable/ic_keyboard_black_24dp" />
+        app:layout_constraintEnd_toEndOf="@+id/bottom_textView"
+        app:srcCompat="@drawable/ic_keyboard_black_24dp"
+        android:onClick="showKeyBoard"/>
 
     <ImageView
-        android:id="@+id/imageView3"
+        android:id="@+id/catagory_icon"
         android:layout_width="44dp"
         android:layout_height="44dp"
         android:layout_marginStart="16dp"
@@ -80,4 +101,38 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ic_more_vert_black_24dp" />
+
+    <EditText
+        android:id="@+id/message_Input"
+        android:imeOptions="actionSend"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/colorWhite"
+        android:inputType="text"
+        android:ems="13"
+        android:hint="Ask  me"
+        android:padding="10dp"
+        app:layout_constraintBottom_toBottomOf="@+id/bottom_textView"
+        app:layout_constraintEnd_toEndOf="@+id/bottom_textView"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/bottom_textView"
+        app:layout_constraintVertical_bias="0.428"
+        android:visibility="gone"
+
+        />
+    <ImageView
+        android:id="@+id/voice_icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="4dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/message_Input"
+        app:srcCompat="@drawable/ic_mask_group_15"
+        android:layout_margin="12dp"
+        android:onClick="getSpeechInput"
+      />
+
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
