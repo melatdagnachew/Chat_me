@@ -42,13 +42,11 @@ public class HomeActivity extends AppCompatActivity {
     ViewGroup viewGroup;
     LinearLayout bot_greeting;
     ArrayList<role> mRoleList;
-
+    role responseMessage;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-
-
 
         messageInput = findViewById(R.id.message_Input);
         catagory_icon = findViewById(R.id.catagory_icon);
@@ -57,30 +55,17 @@ public class HomeActivity extends AppCompatActivity {
         voice_icon = findViewById(R.id.voice_icon);
         recyclerView = findViewById(R.id.recycler_view);
 
-
-        bot_greeting = findViewById(R.id.bot_greeting);
-        LayoutInflater Inflater = getLayoutInflater();
-        View root = Inflater.inflate(R.layout.chat_item_bot, bot_greeting, false);
-
-
-        bot_greeting.addView(root);
-
-        message = root.findViewById(R.id.show_message_bot);
-        bot_icon = root.findViewById(R.id.profile_image_bot);
-        bot_icon.setVisibility(View.VISIBLE);
-
-        Intent intent = getIntent();
-        name = intent.getStringExtra("name");
-
-        String bot_message = "Hello" + " " + name + ", Welcome to chatMe.How may I help you today";
-        greeting_message = message.getText().toString();
-        message.setText(greeting_message + bot_message);
-
-
         mRoleList = new ArrayList<>();
         messageAdapter = new MessageAdapter(this, mRoleList);
         recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
         recyclerView.setAdapter(messageAdapter);
+
+        Intent intent = getIntent();
+        name = intent.getStringExtra("name");
+        String bot_message = "Hello" + " " + name + ", Welcome to chatMe.How may I help you today?";
+        responseMessage = new role(bot_message, false);
+        mRoleList.add(responseMessage);
+
 
         messageInput.setOnEditorActionListener(new TextView.OnEditorActionListener() {
 
@@ -88,7 +73,7 @@ public class HomeActivity extends AppCompatActivity {
             public boolean onEditorAction(TextView textView, int i, KeyEvent keyEvent) {
 
                 if (i == EditorInfo.IME_ACTION_SEND) {
-                    role responseMessage = new role(messageInput.getText().toString(), true);
+                    responseMessage = new role(messageInput.getText().toString(), true);
                     mRoleList.add(responseMessage);
                     messageInput.setText("");
                     messageAdapter.notifyDataSetChanged();
@@ -99,8 +84,6 @@ public class HomeActivity extends AppCompatActivity {
                 return false;
             }
         });
-
-
     }
     boolean isLastVisible() {
         LinearLayoutManager layoutManager = ((LinearLayoutManager) recyclerView.getLayoutManager());
@@ -108,6 +91,7 @@ public class HomeActivity extends AppCompatActivity {
         int numItems = recyclerView.getAdapter().getItemCount();
         return (pos >= numItems);
     }
+
 
     public void catagory_button(View view) {
 
@@ -147,7 +131,9 @@ public class HomeActivity extends AppCompatActivity {
             case 10:
                 if (resultCode == RESULT_OK && data != null) {
                     ArrayList<String> result = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
-                    txvResult.setText(result.get(0));
+                    responseMessage = new role(result.get(0).toString(), true);
+                    mRoleList.add(responseMessage);
+
                 }
                 break;
         }
