@@ -1,36 +1,46 @@
 package com.gebeya.chatme;
 
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
+
+@Entity
 public class role {
 
-    public String bot;
-    public String user;
+    @PrimaryKey(autoGenerate = true)
+    private int id;
+
+
     public String message;
-    public int image;
+    public String time;
+
     boolean isMe;
 
     public role() {
     }
 
-    public role(String message, boolean isMe) {
+    public role(String message) {
+        this.message = message;
+    }
+
+    public role(String message,String time, boolean isMe) {
         this.message = message;
         this.isMe = isMe;
     }
 
-
-    public String getBot() {
-        return bot;
+    public String getTime() {
+        return time;
     }
 
-    public void setBot(String bot) {
-        this.bot = bot;
+    public void setTime(String time) {
+        this.time = time;
     }
 
-    public String getUser() {
-        return user;
+    public int getId() {
+        return id;
     }
 
-    public void setUser(String user) {
-        this.user = user;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getMessage() {
@@ -41,13 +51,7 @@ public class role {
         this.message = message;
     }
 
-    public int getImage() {
-        return image;
-    }
 
-    public void setImage(int image) {
-        this.image = image;
-    }
 
     public boolean isMe() {
         return isMe;
@@ -55,5 +59,14 @@ public class role {
 
     public void setMe(boolean me) {
         isMe = me;
+    }
+
+    @Override
+    public String toString() {
+        return "Role{" +
+                "id=" + id +
+                ", message='" + message + '\'' +
+                ", isMe='" + isMe + '\'' +
+                '}';
     }
 }

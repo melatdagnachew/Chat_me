@@ -65,7 +65,7 @@
             android:textColorHint="#e9edf6"/>
 
         <Button
-            android:id="@+id/button2"
+            android:id="@+id/registerbtn"
             android:layout_width="match_parent"
             android:layout_height="55dp"
             android:text="Register"

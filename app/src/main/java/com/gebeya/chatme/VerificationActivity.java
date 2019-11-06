@@ -19,10 +19,15 @@ import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
 import com.google.firebase.auth.PhoneAuthCredential;
 import com.google.firebase.auth.PhoneAuthProvider;
 
+import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import okhttp3.ResponseBody;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class VerificationActivity extends AppCompatActivity {
 
@@ -55,6 +60,8 @@ public class VerificationActivity extends AppCompatActivity {
         Intent intent = getIntent();
         String phone = intent.getStringExtra("phone");
         sendVerificationCode(phone);
+
+
 
         verification_desc = (String) concatNo.getText().toString();
         concatNo.setText(verification_desc + phone);
@@ -141,10 +148,51 @@ public class VerificationActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
+
+                            Intent intent = getIntent();
+                            String phone = intent.getStringExtra("phone");
+                            String phoneNumber = phone.substring(3);
+                            String name = intent.getStringExtra("name");
+                            Long phoneNo = Long.parseLong(phoneNumber);
+
                             //here you can open  activity
-                            Intent i = new Intent(VerificationActivity.this, HomeActivity.class);
-                            i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                            startActivity(i);
+                            retrofit2.Call<ResponseBody> call = RetrofitClient
+                                    .getInstance()
+                                    .getUserServiceApi()
+                                    .signUp(name,phoneNo);
+
+                            call.enqueue(new Callback<ResponseBody>() {
+                                @Override
+                                public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                                    try {
+                                        if (response.code() == 200) {
+
+                                            String s = response.body().string();
+                                            Intent i;
+
+
+                                            i = new Intent(VerificationActivity.this, HomeActivity.class);
+                                            i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+
+                                            startActivity(i);
+                                        } else {
+
+                                            String s = response.errorBody().string();
+                                            Toast.makeText(VerificationActivity.this, s, Toast.LENGTH_SHORT).show();
+
+                                        }
+                                    } catch (IOException e) {
+                                        e.printStackTrace();
+                                    }
+                                }
+
+                                @Override
+                                public void onFailure(Call<ResponseBody> call, Throwable t) {
+
+                                    Toast.makeText(VerificationActivity.this, t.getMessage(), Toast.LENGTH_LONG);
+                                }
+                            });
+
                         } else {
                             String message = "Something is wrong, we will fix it soon...";
 
