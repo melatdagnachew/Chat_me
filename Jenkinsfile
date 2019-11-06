@@ -3,7 +3,7 @@ pipeline {
   stages {
     stage('build') {
       steps {
-        echo 'Melat\'s pipeline'
+        echo 'Melat\'s development pipeline'
       }
     }
   }
