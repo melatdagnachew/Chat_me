@@ -1,4 +1,4 @@
-package com.gebeya.chatme;
+package com.gebeya.chatme.Activity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -6,17 +6,13 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.Toast;
 
-import java.io.IOException;
-
-import javax.microedition.khronos.egl.EGLDisplay;
+import com.gebeya.chatme.R;
+import com.gebeya.chatme.RetrofitClient;
 
 import androidx.appcompat.app.AppCompatActivity;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 
 public class RegisterActivity extends AppCompatActivity {
@@ -84,35 +80,39 @@ public class RegisterActivity extends AppCompatActivity {
                 .getUserServiceApi()
                 .signUp(name, phoneNo);
 
-        final Intent logInt = new Intent(this, HomeActivity.class);
+        final Intent logInt = new Intent(this, VerificationActivity.class);
 
         logInt.putExtra("phone", phone);
         logInt.putExtra("name", name);
 
-        call.enqueue(new Callback<ResponseBody>() {
-            @Override
-            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                try {
-                    if (response.code() == 200) {
-
-
-                        startActivity(logInt);
-                    } else {
-
-                        String s = response.errorBody().string();
-                        Toast.makeText(RegisterActivity.this, s, Toast.LENGTH_SHORT).show();
-
-                    }
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-
-            @Override
-            public void onFailure(Call<ResponseBody> call, Throwable t) {
-                Toast.makeText(RegisterActivity.this, t.getMessage(), Toast.LENGTH_LONG);
-            }
-        });
+//        Intent i = new Intent(this, VerificationActivity.class);
+//        i.putExtra("phone",phone);
+//        i.putExtra("name",name);
+//        startActivity(i);
+//        call.enqueue(new Callback<ResponseBody>() {
+//            @Override
+//            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+//                try {
+//                    if (response.code() == 200) {
+//
+//
+//                        startActivity(logInt);
+//                    } else {
+//
+//                        String s = response.errorBody().string();
+//                        Toast.makeText(RegisterActivity.this, s, Toast.LENGTH_SHORT).show();
+//
+//                    }
+//                } catch (IOException e) {
+//                    e.printStackTrace();
+//                }
+//            }
+//
+//            @Override
+//            public void onFailure(Call<ResponseBody> call, Throwable t) {
+//                Toast.makeText(RegisterActivity.this, t.getMessage(), Toast.LENGTH_LONG);
+//            }
+//        });
 
 
     }

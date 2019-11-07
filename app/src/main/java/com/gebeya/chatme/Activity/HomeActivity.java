@@ -1,10 +1,8 @@
-package com.gebeya.chatme;
+package com.gebeya.chatme.Activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.room.Room;
-import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -26,9 +24,14 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.gebeya.chatme.MessageAdapter;
+import com.gebeya.chatme.model.MyAlarm;
+import com.gebeya.chatme.R;
+import com.gebeya.chatme.RetrofitClient;
 import com.gebeya.chatme.model.Dialog;
 import com.gebeya.chatme.model.Reminder;
 import com.gebeya.chatme.model.ReminderRequest;
+import com.gebeya.chatme.model.role;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -85,10 +88,10 @@ public class HomeActivity extends AppCompatActivity {
 
         final String messagetoDisplay = intent.getStringExtra("message");
 
-        if (getSharedPreferences("chatme", MODE_PRIVATE) != null) {
+//        if (getSharedPreferences("chatme", MODE_PRIVATE) != null) {
             prefs = getSharedPreferences("chatme", MODE_PRIVATE);
             token = prefs.getString("token", "");//"No name defined" is the default value.
-        }
+//        }
 
 //        if (TextUtils.isEmpty(token)){
 //            // todo log the user out
@@ -155,9 +158,9 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     private void createAReminder() {
-        if (token != null) {
-            Toast.makeText(this, "token is empty", Toast.LENGTH_SHORT).show();
-        }
+//        if (token != null) {
+//            Toast.makeText(this, "token is empty", Toast.LENGTH_SHORT).show();
+//        }
 
         ReminderRequest reminderRequest = new ReminderRequest();
         Dialog dialog = new Dialog();

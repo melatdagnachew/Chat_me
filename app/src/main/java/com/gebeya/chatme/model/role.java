@@ -1,4 +1,4 @@
-package com.gebeya.chatme;
+package com.gebeya.chatme.model;
 
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;

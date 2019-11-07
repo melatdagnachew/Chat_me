@@ -1,4 +1,4 @@
-package com.gebeya.chatme;
+package com.gebeya.chatme.model;
 
 import android.app.AlarmManager;
 import android.app.Notification;

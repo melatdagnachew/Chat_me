@@ -1,4 +1,4 @@
-package com.gebeya.chatme;
+package com.gebeya.chatme.Activity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,6 +8,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.chaos.view.PinView;
+import com.gebeya.chatme.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
@@ -19,15 +20,10 @@ import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
 import com.google.firebase.auth.PhoneAuthCredential;
 import com.google.firebase.auth.PhoneAuthProvider;
 
-import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import okhttp3.ResponseBody;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 public class VerificationActivity extends AppCompatActivity {
 
@@ -148,50 +144,55 @@ public class VerificationActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
+                            Intent i = new Intent(VerificationActivity.this, HomeActivity.class);
+                            i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                            startActivity(i);
 
-                            Intent intent = getIntent();
-                            String phone = intent.getStringExtra("phone");
-                            String phoneNumber = phone.substring(3);
-                            String name = intent.getStringExtra("name");
-                            Long phoneNo = Long.parseLong(phoneNumber);
+//                            Intent intent = getIntent();
+//                            String phone = intent.getStringExtra("phone");
+//                            String phoneNumber = phone.substring(3);
+//                            String name = intent.getStringExtra("name");
+//                            Long phoneNo = Long.parseLong(phoneNumber);
+//
+//                            //here you can open  activity
+//                            retrofit2.Call<ResponseBody> call = RetrofitClient
+//                                    .getInstance()
+//                                    .getUserServiceApi()
+//                                    .signUp(name,phoneNo);
+//
+//                            call.enqueue(new Callback<ResponseBody>() {
+//                                @Override
+//                                public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+//                                    try {
+//                                        if (response.code() == 200) {
+//
+//                                            String s = response.body().string();
+//                                            Intent i;
+//
+//
+//                                            i = new Intent(VerificationActivity.this, HomeActivity.class);
+//                                            i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+//
+//                                            startActivity(i);
+//                                        } else {
+//
+//                                            String s = response.errorBody().string();
+//                                            Toast.makeText(VerificationActivity.this, s, Toast.LENGTH_SHORT).show();
+//
+//                                        }
+//                                    } catch (IOException e) {
+//                                        e.printStackTrace();
+//                                    }
+//                                }
+//
+//                                @Override
+//                                public void onFailure(Call<ResponseBody> call, Throwable t) {
+//
+//                                    Toast.makeText(VerificationActivity.this, t.getMessage(), Toast.LENGTH_LONG);
+//                                }
+//                            });
 
-                            //here you can open  activity
-                            retrofit2.Call<ResponseBody> call = RetrofitClient
-                                    .getInstance()
-                                    .getUserServiceApi()
-                                    .signUp(name,phoneNo);
 
-                            call.enqueue(new Callback<ResponseBody>() {
-                                @Override
-                                public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                                    try {
-                                        if (response.code() == 200) {
-
-                                            String s = response.body().string();
-                                            Intent i;
-
-
-                                            i = new Intent(VerificationActivity.this, HomeActivity.class);
-                                            i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-
-                                            startActivity(i);
-                                        } else {
-
-                                            String s = response.errorBody().string();
-                                            Toast.makeText(VerificationActivity.this, s, Toast.LENGTH_SHORT).show();
-
-                                        }
-                                    } catch (IOException e) {
-                                        e.printStackTrace();
-                                    }
-                                }
-
-                                @Override
-                                public void onFailure(Call<ResponseBody> call, Throwable t) {
-
-                                    Toast.makeText(VerificationActivity.this, t.getMessage(), Toast.LENGTH_LONG);
-                                }
-                            });
 
                         } else {
                             String message = "Something is wrong, we will fix it soon...";

@@ -1,4 +1,4 @@
-package com.gebeya.chatme;
+package com.gebeya.chatme.Service;
 
 import com.gebeya.chatme.model.Reminder;
 import com.gebeya.chatme.model.ReminderRequest;
@@ -23,7 +23,7 @@ public interface ApiReminderService {
 //
 //    );
 
-    @FormUrlEncoded
+//    @FormUrlEncoded
     @POST("/chat/")
     @Headers({ "Content-Type: application/json;charset=UTF-8"})
     Call<Reminder> createReminder(

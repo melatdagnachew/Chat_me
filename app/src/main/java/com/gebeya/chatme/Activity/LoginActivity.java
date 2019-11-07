@@ -1,19 +1,15 @@
-package com.gebeya.chatme;
+package com.gebeya.chatme.Activity;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.Toast;
 
-import java.io.IOException;
+import com.gebeya.chatme.R;
+import com.gebeya.chatme.RetrofitClient;
+import com.gebeya.chatme.model.LoginResponse;
 
 import androidx.appcompat.app.AppCompatActivity;
-import okhttp3.ResponseBody;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -40,53 +36,57 @@ public class LoginActivity extends AppCompatActivity {
         String phone = phoneNumberInput.getText().toString().trim();
         //String phoneNumber = phone.substring(3);
         Long phoneNo = Long.parseLong(phone);
-        retrofit2.Call<User> call = RetrofitClient
+        retrofit2.Call<LoginResponse> call = RetrofitClient
                 .getInstance()
                 .getUserServiceApi()
                 .logIn(phoneNo);
 
-        call.enqueue(new Callback<User>() {
-            @Override
-            public void onResponse(Call<User> call, Response<User> response) {
-                try {
-                    if (response.code() == 200) {
+        Intent i = new Intent(LoginActivity.this, HomeActivity.class);
 
-                        Intent i;
+        i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
 
-                       String token = response.body().getToken();
+        startActivity(i);
 
-                         i = new Intent(LoginActivity.this, HomeActivity.class);
-
-                        i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-
-                        startActivity(i);
-
-
-//                        Setting values in Preference:
-// MY_PREFS_NAME - a static String variable like:
-//public static final String MY_PREFS_NAME = "MyPrefsFile";
-                        SharedPreferences.Editor editor = getSharedPreferences("chatme", MODE_PRIVATE).edit();
-                        editor.putString("token", token);
-                        editor.apply();
-//                        Toast.makeText(LoginActivity.this, token, Toast.LENGTH_SHORT).show();
-                    } else {
-
-                        String s = response.errorBody().string();
-                        Toast.makeText(LoginActivity.this, s, Toast.LENGTH_SHORT).show();
-
-                    }
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-
-            @Override
-            public void onFailure(Call<User> call, Throwable t) {
-
-                Toast.makeText(LoginActivity.this, t.getMessage(), Toast.LENGTH_LONG);
-            }
-
-        });
+//        call.enqueue(new Callback<LoginResponse>() {
+//            @Override
+//            public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
+//                try {
+//                    if (response.code() == 200) {
+//
+//
+//
+//                       String token = response.body().getToken();
+//
+//                        SharedPreferences.Editor editor = getSharedPreferences("chatme", MODE_PRIVATE).edit();
+//                        editor.putString("token", token);
+//                        editor.apply();
+//
+//
+//
+//
+////                        Setting values in Preference:
+//// MY_PREFS_NAME - a static String variable like:
+////public static final String MY_PREFS_NAME = "MyPrefsFile";
+//
+////                        Toast.makeText(LoginActivity.this, token, Toast.LENGTH_SHORT).show();
+//                    } else {
+//
+//                        String s = response.errorBody().string();
+//                        Toast.makeText(LoginActivity.this, s, Toast.LENGTH_SHORT).show();
+//
+//                    }
+//                } catch (IOException e) {
+//                    e.printStackTrace();
+//                }
+//            }
+//
+//            @Override
+//            public void onFailure(Call<LoginResponse> call, Throwable t) {
+//
+//                Toast.makeText(LoginActivity.this, t.getMessage(), Toast.LENGTH_LONG);
+//            }
+//
+//        });
 
     }
 
