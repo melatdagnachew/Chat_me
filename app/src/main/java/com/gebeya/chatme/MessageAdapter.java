@@ -1,6 +1,7 @@
 package com.gebeya.chatme;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,10 +9,11 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.gebeya.chatme.model.role;
+
 import java.util.List;
 
 import androidx.annotation.NonNull;
-import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 
@@ -72,6 +74,9 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHold
                 // Show the bot and image and space
             }
 
+            String message=holder.show_message_bot.getText().toString();
+            Intent i = new Intent();
+            i.putExtra("message",message);
 //            holder.show_message_user .setText(mRole.get(position).getMessage());
 
         }
