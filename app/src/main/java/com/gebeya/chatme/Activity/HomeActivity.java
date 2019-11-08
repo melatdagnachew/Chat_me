@@ -3,6 +3,7 @@ package com.gebeya.chatme.Activity;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -51,7 +52,7 @@ public class HomeActivity extends AppCompatActivity {
     ArrayList<role> mRoleList;
     role responseMessage;
     Calendar calendar;
-//    messageDatabase database;
+    //    messageDatabase database;
 //    messageDao messageDao;
     TextView showMessageBotTv;
     int hour;
@@ -88,11 +89,10 @@ public class HomeActivity extends AppCompatActivity {
 
         final String messagetoDisplay = intent.getStringExtra("message");
 
-//        if (getSharedPreferences("chatme", MODE_PRIVATE) != null) {
-            prefs = getSharedPreferences("chatme", MODE_PRIVATE);
-            token = prefs.getString("token", "");//"No name defined" is the default value.
-//        }
+        prefs = getSharedPreferences("chatme", MODE_PRIVATE);
+        token = prefs.getString("token", "");//"No name defined" is the default value.
 
+        Toast.makeText(this, "token is " + token, Toast.LENGTH_SHORT).show();
 //        if (TextUtils.isEmpty(token)){
 //            // todo log the user out
 //            return;

@@ -1,9 +1,11 @@
 package com.gebeya.chatme.Activity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.gebeya.chatme.R;
 import com.gebeya.chatme.RetrofitClient;
@@ -11,9 +13,16 @@ import com.gebeya.chatme.model.LoginResponse;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.io.IOException;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 public class LoginActivity extends AppCompatActivity {
 
     private static String token;
+    SharedPreferences.Editor editor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,11 +44,19 @@ public class LoginActivity extends AppCompatActivity {
         EditText phoneNumberInput = findViewById(R.id.phoneNumberInput);
         String phone = phoneNumberInput.getText().toString().trim();
         //String phoneNumber = phone.substring(3);
-        Long phoneNo = Long.parseLong(phone);
-        retrofit2.Call<LoginResponse> call = RetrofitClient
-                .getInstance()
-                .getUserServiceApi()
-                .logIn(phoneNo);
+//        Long phoneNo = Long.parseLong(phone);
+//        retrofit2.Call<LoginResponse> call = RetrofitClient
+//                .getInstance()
+//                .getUserServiceApi()
+//                .logIn(phoneNo);
+
+
+
+        String token = "ldakjflkasjfdlkasjflksa;jfksaj;";//response.body().getToken();
+
+        editor = getSharedPreferences("chatme", MODE_PRIVATE).edit();
+        editor.putString("token", token);
+        editor.apply();
 
         Intent i = new Intent(LoginActivity.this, HomeActivity.class);
 
@@ -54,14 +71,14 @@ public class LoginActivity extends AppCompatActivity {
 //                    if (response.code() == 200) {
 //
 //
+//                        if (response.body()!=null && response.body().getToken()!=null){
+//                            String token = "ldakjflkasjfdlkasjflksa;jfksaj;";//response.body().getToken();
 //
-//                       String token = response.body().getToken();
+//                            editor = getSharedPreferences("chatme", MODE_PRIVATE).edit();
+//                            editor.putString("token", token);
+//                            editor.apply();
 //
-//                        SharedPreferences.Editor editor = getSharedPreferences("chatme", MODE_PRIVATE).edit();
-//                        editor.putString("token", token);
-//                        editor.apply();
-//
-//
+//                        }
 //
 //
 ////                        Setting values in Preference:
